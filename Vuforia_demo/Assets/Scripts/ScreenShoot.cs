@@ -20,42 +20,46 @@ public class ScreenShoot : MonoBehaviour
 
     public void OnScreenShootClick()
     {
-        // 截屏文件的日期
-        System.DateTime now = System.DateTime.Now;
-        string times = now.ToString();
-        times = times.Trim();
-        times = times.Replace("/", "-");
+        // 获取对应物体，同时设置需要食物的位置
+        GameObject chicken = GameObject.Find("longChicken(Clone)");
+        ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
+        script.SetMoveTarget(new Vector3(-2, 0, -1));
+        //// 截屏文件的日期
+        //System.DateTime now = System.DateTime.Now;
+        //string times = now.ToString();
+        //times = times.Trim();
+        //times = times.Replace("/", "-");
 
-        // 文件名称
-        string fileName = "ARScreenShoot" + times + ".png";
+        //// 文件名称
+        //string fileName = "ARScreenShoot" + times + ".png";
 
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            // 按钮在截屏的时候设置不可见
-            this.GetComponentInChildren<Image>().enabled = false;
-            this.GetComponentInChildren<Text>().enabled = false;
+        //if (Application.platform == RuntimePlatform.Android)
+        //{
+        //    // 按钮在截屏的时候设置不可见
+        //    this.GetComponentInChildren<Image>().enabled = false;
+        //    this.GetComponentInChildren<Text>().enabled = false;
             
-            // 截图到材质上
-            Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-            texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
-            texture.Apply();
+        //    // 截图到材质上
+        //    Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+        //    texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+        //    texture.Apply();
 
-            // 转化成字节数组
-            byte[] bytes = texture.EncodeToPNG();
-            //存储到截屏的目录下
-            string des = "/sdcard/DCIM/Screenshots";
+        //    // 转化成字节数组
+        //    byte[] bytes = texture.EncodeToPNG();
+        //    //存储到截屏的目录下
+        //    string des = "/sdcard/DCIM/Screenshots";
 
-            if (!Directory.Exists(des))
-            {
-                Directory.CreateDirectory(des);
-            }
+        //    if (!Directory.Exists(des))
+        //    {
+        //        Directory.CreateDirectory(des);
+        //    }
 
-            string pathSave = des + "/" + fileName;
-            File.WriteAllBytes(pathSave, bytes);
+        //    string pathSave = des + "/" + fileName;
+        //    File.WriteAllBytes(pathSave, bytes);
 
-            this.GetComponentInChildren<Image>().enabled = true;
-            this.GetComponentInChildren<Text>().enabled = true;
-        }
+        //    this.GetComponentInChildren<Image>().enabled = true;
+        //    this.GetComponentInChildren<Text>().enabled = true;
+        //}
 
     }
 }

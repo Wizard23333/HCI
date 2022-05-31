@@ -92,7 +92,7 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
 
     protected virtual void OnTrackingFound()
     {
-        // ÕÒµ½ĞèÒªÊ¶±ğµÄÎïÌå£¬½«ÎïÌåµÄ×ÓÎïÌåÏÔÊ¾³öÀ´
+        // ï¿½Òµï¿½ï¿½ï¿½ÒªÊ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
         //var rendererComponents = GetComponentsInChildren<Renderer>(true);
         //var colliderComponents = GetComponentsInChildren<Collider>(true);
         //var canvasComponents = GetComponentsInChildren<Canvas>(true);
@@ -122,7 +122,7 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
 
     protected virtual void OnTrackingLost()
     {
-        // ¶ªÊ§ÁËĞèÒªÊ¶±ğµÄÎïÌå£¬Ôò½«×ÓÎïÌåÈ«²¿Òş²Ø
+        // ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ÒªÊ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         //var rendererComponents = GetComponentsInChildren<Renderer>(true);
         //var colliderComponents = GetComponentsInChildren<Collider>(true);
         //var canvasComponents = GetComponentsInChildren<Canvas>(true);
