@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -5833013925211988852}
   - component: {fileID: 5254744416788918394}
   - component: {fileID: -5867991766712275214}
+  - component: {fileID: 7550483035547985379}
   m_Layer: 0
   m_Name: longChicken
   m_TagString: Untagged
@@ -110,6 +111,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 379656fe92fd40541b8f3f0c0f0376f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7550483035547985379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6144410333489329360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c5735bde3a24c0aba5a40eb65f4348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6144410333489329361
