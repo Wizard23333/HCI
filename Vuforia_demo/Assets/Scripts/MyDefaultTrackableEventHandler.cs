@@ -109,8 +109,19 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
         //foreach (var component in canvasComponents)
         //    component.enabled = true;
 
+        // 获取鸡的数值
+        
+        if (!PlayerPrefs.HasKey("chicken_value"))
+        {
+              PlayerPrefs.SetInt("chicken_value", 100);
+        }
+        int chickenValue = PlayerPrefs.GetInt("chicken_value");
+
+        Debug.Log(PlayerPrefs.GetInt("chicken_value"));
+        
         GameObject chicken = GameObject.Instantiate(Toon_Chicken_Prefab, new Vector3(0, 1, 0), Quaternion.Euler(new Vector3(0, 180, 0)), transform);
-       
+        Debug.Log(chicken.transform.localScale);
+        chicken.transform.localScale = (float)chickenValue / 100 * new Vector3(1, 1, 1);
 
         GameObject effect1 = GameObject.Instantiate(RFX_HitBlood3, transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), this.transform);
         Destroy(effect1, 2.0f);
