@@ -31,8 +31,7 @@ public class ChickenMove : MonoBehaviour
                 animator.ResetTrigger("walk");
                 animator.SetTrigger("arrive");
                 isTargetSet = false;
-
-                RecordValue();                    
+                Invoke(nameof(RecordValue), 4);                
             }
         }  
          
@@ -47,17 +46,18 @@ public class ChickenMove : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPos, 0.02f);
     }
     void RecordValue()
-    {  
-  
+    {
+        Debug.Log("enter record value");
         if (!PlayerPrefs.HasKey("chicken_value"))
         {
             PlayerPrefs.SetInt("chicken_value", 100);
         } else
         {
-            PlayerPrefs.SetInt("chicken_value", PlayerPrefs.GetInt("chicken_value") + 10);
+            PlayerPrefs.SetInt("chicken_value", PlayerPrefs.GetInt("chicken_value") + 20);
         }
         transform.localScale = (float)PlayerPrefs.GetInt("chicken_value") / 100 * new Vector3(1, 1, 1);
-        
+        GameObject food = GameObject.Find("food");
+        Destroy(food);
     }
 
     // 供外部调用函数，设置目标位置

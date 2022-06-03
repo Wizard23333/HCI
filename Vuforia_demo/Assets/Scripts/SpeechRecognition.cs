@@ -218,14 +218,28 @@ public class SpeechRecognition : MonoBehaviour, IPointerDownHandler, IPointerUpH
             textResult.text = result;
             if(result == "移动")
             {
-                // 获取对应物体，同时设置需要食物的位置
                 GameObject chicken = GameObject.Find("longChicken(Clone)");
-                ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
-                script.SetMoveTarget(new Vector3(-2, 0, -1));
-            }else if(result == "变大")
+                chicken.transform.position = new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), 0, -1);
+                /*ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
+                script.SetMoveTarget(new Vector3(UnityEngine.Random.Range(-0.5f, 0.5f), 0, -1));*/
+
+            }
+            else if(result == "飞行")
             {
                 GameObject chicken = GameObject.Find("longChicken(Clone)");
-                ChickenMove script = (ChickenMove)chicken.GetComponent("Enlarge");
+                ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
+                script.SetMoveTarget(new Vector3(0, 10*UnityEngine.Random.Range(-0.5f, 0.5f), -1));
+            }else if(result == "重置")
+            {
+                PlayerPrefs.SetInt("chicken_value", 100);
+                GameObject chicken = GameObject.Find("longChicken(Clone)");
+                chicken.transform.localScale = ((float)PlayerPrefs.GetInt("chicken_value") / 100) * new Vector3(1, 1, 1);
+            }
+            else if(result == "变小")
+            {
+                PlayerPrefs.SetInt("chicken_value", PlayerPrefs.GetInt("chicken_value") - 20);
+                GameObject chicken = GameObject.Find("longChicken(Clone)");
+                chicken.transform.localScale = ((float)PlayerPrefs.GetInt("chicken_value") / 100) * new Vector3(1, 1, 1);
             }
         }
     }

@@ -150,7 +150,6 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
         //foreach (var component in canvasComponents)
         //    component.enabled = false;
 
-
         Destroy(GameObject.Find("longChicken(Clone)"));
 
         if (m_source)
