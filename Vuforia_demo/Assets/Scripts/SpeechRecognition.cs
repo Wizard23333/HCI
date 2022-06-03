@@ -216,6 +216,17 @@ public class SpeechRecognition : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 result = "识别结果为空";
             }
             textResult.text = result;
+            if(result == "移动")
+            {
+                // 获取对应物体，同时设置需要食物的位置
+                GameObject chicken = GameObject.Find("longChicken(Clone)");
+                ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
+                script.SetMoveTarget(new Vector3(-2, 0, -1));
+            }else if(result == "变大")
+            {
+                GameObject chicken = GameObject.Find("longChicken(Clone)");
+                ChickenMove script = (ChickenMove)chicken.GetComponent("Enlarge");
+            }
         }
     }
 
