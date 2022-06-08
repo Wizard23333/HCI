@@ -20,12 +20,12 @@ public class SetFood : MonoBehaviour
 
         GameObject obj = Instantiate(cube);
         obj.name = "food";
-        Vector3 loc = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-0.5f, 0.5f));
+        Vector3 loc = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
         obj.transform.position = createCube.transform.TransformPoint(loc);
 
         GameObject chicken = GameObject.Find("longChicken(Clone)");
         ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
-        script.SetMoveTarget(loc);
+        script.MoveAndEatTarget(loc);
 
     }
     // Update is called once per frame

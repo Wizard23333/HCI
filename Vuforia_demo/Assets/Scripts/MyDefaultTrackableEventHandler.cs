@@ -20,7 +20,9 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
     #region PROTECTED_MEMBER_VARIABLES
 
     public GameObject Toon_Chicken_Prefab;
+    public GameObject Toon_Chick_Prefab;
     public GameObject RFX_HitBlood3;
+    private GameObject chicken;
     private AudioSource audioSource;
     public AudioClip chickSound;
     private bool m_source = false;
@@ -92,25 +94,7 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
 
     protected virtual void OnTrackingFound()
     {
-        // �ҵ���Ҫʶ������壬���������������ʾ����
-        //var rendererComponents = GetComponentsInChildren<Renderer>(true);
-        //var colliderComponents = GetComponentsInChildren<Collider>(true);
-        //var canvasComponents = GetComponentsInChildren<Canvas>(true);
-
-        //// Enable rendering:
-        //foreach (var component in rendererComponents)
-        //    component.enabled = true;
-
-        //// Enable colliders:
-        //foreach (var component in colliderComponents)
-        //    component.enabled = true;
-
-        //// Enable canvas':
-        //foreach (var component in canvasComponents)
-        //    component.enabled = true;
-
         // 获取鸡的数值
-        
         if (!PlayerPrefs.HasKey("chicken_value"))
         {
               PlayerPrefs.SetInt("chicken_value", 100);
@@ -118,10 +102,20 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
         int chickenValue = PlayerPrefs.GetInt("chicken_value");
 
         Debug.Log(PlayerPrefs.GetInt("chicken_value"));
-        
-        GameObject chicken = GameObject.Instantiate(Toon_Chicken_Prefab, new Vector3(0, 1, 0), Quaternion.Euler(new Vector3(0, 180, 0)), transform);
+
+
+        if(chickenValue >= 200)
+        {
+            chicken = GameObject.Instantiate(Toon_Chicken_Prefab, new Vector3(0, 1, 0), Quaternion.Euler(new Vector3(0, 180, 0)), transform);
+        } else
+        {
+            chicken = GameObject.Instantiate(Toon_Chick_Prefab, new Vector3(0, 1, 0), Quaternion.Euler(new Vector3(0, 180, 0)), transform);
+        }
+        chicken.name = "longChicken(Clone)";
+
+
         Debug.Log(chicken.transform.localScale);
-        chicken.transform.localScale = (float)chickenValue / 100 * new Vector3(1, 1, 1);
+        chicken.transform.localScale = ((float)chickenValue / 100) * new Vector3(1f, 1f, 1f);
 
         GameObject effect1 = GameObject.Instantiate(RFX_HitBlood3, transform.position, Quaternion.Euler(new Vector3(0, 180, 0)), this.transform);
         Destroy(effect1, 2.0f);
@@ -133,24 +127,8 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
 
     protected virtual void OnTrackingLost()
     {
-        // ��ʧ����Ҫʶ������壬��������ȫ������
-        //var rendererComponents = GetComponentsInChildren<Renderer>(true);
-        //var colliderComponents = GetComponentsInChildren<Collider>(true);
-        //var canvasComponents = GetComponentsInChildren<Canvas>(true);
-
-        //// Disable rendering:
-        //foreach (var component in rendererComponents)
-        //    component.enabled = false;
-
-        //// Disable colliders:
-        //foreach (var component in colliderComponents)
-        //    component.enabled = false;
-
-        //// Disable canvas':
-        //foreach (var component in canvasComponents)
-        //    component.enabled = false;
-
-        Destroy(GameObject.Find("longChicken(Clone)"));
+        Destroy(chicken);
+        Destroy(GameObject.Find("food"));
 
         if (m_source)
         {
@@ -160,4 +138,11 @@ public class MyDefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHand
     }
 
     #endregion // PROTECTED_METHODS
+
+    public void ReloadModel()
+    {
+        OnTrackingLost();
+        OnTrackingFound();
+    }
+
 }

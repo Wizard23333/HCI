@@ -23,7 +23,7 @@ public class ScreenShoot : MonoBehaviour
         // 获取对应物体，同时设置需要食物的位置
         GameObject chicken = GameObject.Find("longChicken(Clone)");
         ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
-        script.SetMoveTarget(new Vector3(-2, 0, -1));
+        script.FlyToTarget(new Vector3(-0.5f, 2, -0.5f));
         //// 截屏文件的日期
         //System.DateTime now = System.DateTime.Now;
         //string times = now.ToString();

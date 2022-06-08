@@ -228,12 +228,13 @@ public class SpeechRecognition : MonoBehaviour, IPointerDownHandler, IPointerUpH
             {
                 GameObject chicken = GameObject.Find("longChicken(Clone)");
                 ChickenMove script = (ChickenMove)chicken.GetComponent("ChickenMove");
-                script.SetMoveTarget(new Vector3(0, 10*UnityEngine.Random.Range(-0.5f, 0.5f), -1));
+                script.FlyToTarget(new Vector3(UnityEngine.Random.Range(-1.5f, 1.5f), UnityEngine.Random.Range(1f, 1.5f), UnityEngine.Random.Range(-1.5f, 1.5f)));
             }else if(result == "重置")
             {
                 PlayerPrefs.SetInt("chicken_value", 100);
-                GameObject chicken = GameObject.Find("longChicken(Clone)");
-                chicken.transform.localScale = ((float)PlayerPrefs.GetInt("chicken_value") / 100) * new Vector3(1, 1, 1);
+                GameObject.Find("ImageTarget");
+                MyDefaultTrackableEventHandler script = (MyDefaultTrackableEventHandler)GameObject.Find("ImageTarget").GetComponent("MyDefaultTrackableEventHandler");
+                script.ReloadModel();
             }
             else if(result == "变小")
             {
